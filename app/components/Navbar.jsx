@@ -46,7 +46,7 @@ export default function Navbar() {
                     </Typography>
                 <Toolbar>
                     <IconButton onClick={toggleColorMode}>
-                        {theme.palette.mode === 'light' ? <LightModeIcon /> : <DarkModeIcon />}
+                        {theme.palette.mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
                     </IconButton>
                 </Toolbar>
             </Toolbar>
