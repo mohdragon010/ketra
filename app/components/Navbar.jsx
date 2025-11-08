@@ -33,13 +33,12 @@ export default function Navbar() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         sx={{
-                        cursor: 'pointer',
-                        fontWeight: 'bold',
-                        background: 'linear-gradient(45deg, #00bcd4, #3f51b5)',
-                        backgroundClip: 'text',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        minWidth: 'fit-content',
+                            cursor: 'pointer',
+                            fontWeight: 'bold',
+                            background: 'linear-gradient(45deg, #00bcd4, #3f51b5)',
+                            backgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            minWidth: 'fit-content',
                         }}
                     >
                         <Link href="/">Ketra</Link>

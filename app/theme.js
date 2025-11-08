@@ -16,6 +16,12 @@ export const lightTheme = createTheme({
       dark: "#be123c",
       contrastText: "#ffffff",
     },
+    tertiary: {
+      main: "#8b5cf6",    // vibrant purple for hero accents
+      light: "#a78bfa",
+      dark: "#7c3aed",
+      contrastText: "#ffffff",
+    },
     background: {
       default: "#fafafa", // soft paper white
       paper: "#ffffff",   // clean surfaces
@@ -51,6 +57,12 @@ export const darkTheme = createTheme({
       main: "#ec4899",   // neon pink accent
       light: "#f472b6",
       dark: "#be185d",
+      contrastText: "#f9fafb",
+    },
+    tertiary: {
+      main: "#a855f7",   // vibrant purple for hero accents
+      light: "#c084fc",
+      dark: "#9333ea",
       contrastText: "#f9fafb",
     },
     background: {
