@@ -1,50 +1,75 @@
 "use client";
-import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 
 export const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#1976d2",  // bright blue
-      light: "#63a4ff", // lighter blue
-      dark: "#004ba0",  // darker blue
+      main: "#2563eb",    // vivid ocean blue
+      light: "#60a5fa",   // lighter sky blue
+      dark: "#1e40af",    // deep navy
+      contrastText: "#ffffff",
     },
     secondary: {
-      main: "#9c27b0",  // elegant purple
-      light: "#d05ce3", // lighter purple
-      dark: "#6a0080",  // darker purple
+      main: "#f43f5e",    // warm coral-red
+      light: "#fb7185",
+      dark: "#be123c",
+      contrastText: "#ffffff",
     },
     background: {
-      default: "#f5f7fa", // soft gray background
-      paper: "#ffffff",    // white cards, dialogs
+      default: "#fafafa", // soft paper white
+      paper: "#ffffff",   // clean surfaces
     },
     text: {
-      primary: "#1a1a1a", // near-black text
-      secondary: "#4f4f4f", // muted gray text
+      primary: "#111827", // near-black
+      secondary: "#4b5563", // medium gray
     },
+    divider: "#e5e7eb", // subtle gray divider
   },
+  shape: {
+    borderRadius: 12,
+  },
+  typography: {
+    fontFamily: `"Inter", "Roboto", "Helvetica", "Arial", sans-serif`,
+    h5: { fontWeight: 700 },
+    button: { textTransform: "none", fontWeight: 600 },
+  },
+  shadows: Array(25).fill("none"), // optional: flat design aesthetic
 });
+
 
 export const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#90caf9",  // gentle blue
-      light: "#c3fdff", // softer light blue
-      dark: "#42a5f5",  // stronger blue
+      main: "#3b82f6",   // bright azure
+      light: "#60a5fa",
+      dark: "#1d4ed8",
+      contrastText: "#f9fafb",
     },
     secondary: {
-      main: "#ce93d8",  // soft purple
-      light: "#e1bee7", // lighter purple
-      dark: "#ab47bc",  // deeper purple
+      main: "#ec4899",   // neon pink accent
+      light: "#f472b6",
+      dark: "#be185d",
+      contrastText: "#f9fafb",
     },
     background: {
-      default: "#121212", // main app background
-      paper: "#1c1c1c",   // cards, dialogs background
+      default: "#0d1117", // GitHub-like dark base
+      paper: "#161b22",   // slightly lighter panels
     },
     text: {
-      primary: "#ffffff", // main text
-      secondary: "#bdbdbd", // secondary muted text
+      primary: "#e5e7eb",  // off-white
+      secondary: "#9ca3af", // cool gray
     },
+    divider: "#2d333b",
   },
+  shape: {
+    borderRadius: 12,
+  },
+  typography: {
+    fontFamily: `"Inter", "Roboto", "Helvetica", "Arial", sans-serif`,
+    h5: { fontWeight: 700 },
+    button: { textTransform: "none", fontWeight: 600 },
+  },
+  shadows: Array(25).fill("none"),
 });
