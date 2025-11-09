@@ -80,6 +80,7 @@
 
     return (
         <Box
+        id="features"
         sx={{
             py: 14,
             position: 'relative',

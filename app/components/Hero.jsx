@@ -19,6 +19,7 @@ import {
   LibraryBooks
 } from "@mui/icons-material";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Hero() {
   const theme = useTheme();
@@ -257,25 +258,27 @@ export default function Hero() {
               gap: 2
             }}
           >
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<PlayArrow />}
-              component={motion.button}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: `0 0 20px ${theme.palette.primary.main}50`
-              }}
-              whileTap={{ scale: 0.95 }}
-              sx={{
-                padding: theme.spacing(1.5, 4),
-                fontSize: "1.1rem",
-                borderRadius: theme.shape.borderRadius,
-                fontWeight: 600
-              }}
-            >
-              Get Started
-            </Button>
+            <Link href="/subjects">
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<PlayArrow />}
+                component={motion.button}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: `0 0 20px ${theme.palette.primary.main}50`
+                }}
+                whileTap={{ scale: 0.95 }}
+                sx={{
+                  padding: theme.spacing(1.5, 4),
+                  fontSize: "1.1rem",
+                  borderRadius: theme.shape.borderRadius,
+                  fontWeight: 600
+                }}
+              >
+                Get Started
+              </Button>
+            </Link>
             <Button
               variant="outlined"
               color="primary"
@@ -291,6 +294,12 @@ export default function Hero() {
                 fontSize: "1rem",
                 borderRadius: theme.shape.borderRadius,
                 fontWeight: 600
+              }}
+              onClick={() => {
+                document.getElementById('features').scrollIntoView({
+                  behavior:"smooth",
+                  block:"start",
+                })
               }}
             >
               Explore Features
