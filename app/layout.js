@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import "./globals.css";
 import { SubjectsProvider } from "./contexts/subjectContexts";
 
+export const dynamic = "force-static";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -61,12 +63,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      > 
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+    >
+      <body className="antialiased">
         <SubjectsProvider>
-            <ThemeProvider>
+          <ThemeProvider>
             <Navbar />
             {children}
           </ThemeProvider>

@@ -44,6 +44,9 @@ export default function Navbar() {
                         <Link href="/">Ketra</Link>
                     </Typography>
                 <Toolbar>
+                    <Link href="/">
+                        
+                    </Link>
                     <IconButton onClick={toggleColorMode}>
                         {theme.palette.mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
                     </IconButton>
