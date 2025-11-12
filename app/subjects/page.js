@@ -14,6 +14,7 @@ LinearProgress,
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useSubjects } from "../contexts/subjectContexts.js";
+import Link from "next/link.js";
 export default function SubjectPage() {
 const theme = useTheme();
 const { subjects } = useSubjects();
@@ -239,6 +240,8 @@ return (
                     <CardContent sx={{ pt: 0 }}>
                         <Button
                         fullWidth
+                        component={Link}
+                        href={`/subject/${index}`}
                         variant="contained"
                         sx={{
                             background: `linear-gradient(135deg, ${subject.color}, ${subject.color}dd)`,
@@ -259,7 +262,7 @@ return (
                             },
                         }}
                         >
-                        View
+                            View
                         </Button>
                     </CardContent>
                     </Card>

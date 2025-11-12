@@ -1,5 +1,5 @@
 "use client";
-import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
+import { AppBar, Toolbar, Typography, IconButton, Box, Button } from '@mui/material';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { useColorMode } from '../ThemeProvider';
@@ -43,14 +43,19 @@ export default function Navbar() {
                     >
                         <Link href="/">Ketra</Link>
                     </Typography>
-                <Toolbar>
-                    <Link href="/">
-                        
-                    </Link>
+
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Button component={Link} href="/" variant="text" color="primary">
+                            Home
+                        </Button>
+                        <Button component={Link} href="/subjects" variant="text" color="primary">
+                            Subjects
+                        </Button>
+
                     <IconButton onClick={toggleColorMode}>
                         {theme.palette.mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
                     </IconButton>
-                </Toolbar>
+                    </Box>
             </Toolbar>
         </AppBar>
     );

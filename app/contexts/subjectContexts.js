@@ -9,7 +9,7 @@ export function SubjectsProvider({ children }){
         try {
             const savedSubjects = localStorage.getItem("subjects");
             if (savedSubjects) {
-                const parsedSubjects = JSON.parse(savedSubjects);uuuuuuuuu
+                const parsedSubjects = JSON.parse(savedSubjects);
                 if (Array.isArray(parsedSubjects) && parsedSubjects.length > 0) {
                     return parsedSubjects;
                 }

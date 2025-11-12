@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar";
 import "./globals.css";
 import { SubjectsProvider } from "./contexts/subjectContexts";
 
-export const dynamic = "force-static";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,6 +21,10 @@ export const metadata = {
   description:
     "Ketra is a modern web app that helps students stay organized, manage tasks, track progress, and study smarter with a clean dashboard interface.",
   keywords: [
+    "ketra",
+    "study dashboard",
+    "ketra app",
+    "mohamed ayman",
     "study app",
     "student dashboard",
     "study planner",
