@@ -5,83 +5,143 @@ export const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#2563eb",    // vivid ocean blue
-      light: "#60a5fa",   // lighter sky blue
-      dark: "#1e40af",    // deep navy
+      main: "#2563eb",
+      light: "#60a5fa",
+      dark: "#1e40af",
       contrastText: "#ffffff",
     },
     secondary: {
-      main: "#f43f5e",    // warm coral-red
+      main: "#f43f5e",
       light: "#fb7185",
       dark: "#be123c",
       contrastText: "#ffffff",
     },
     tertiary: {
-      main: "#8b5cf6",    // vibrant purple for hero accents
+      main: "#8b5cf6",
       light: "#a78bfa",
       dark: "#7c3aed",
       contrastText: "#ffffff",
     },
     background: {
-      default: "#fafafa", // soft paper white
-      paper: "#ffffff",   // clean surfaces
+      default: "#f8fafc", // slightly cooler tone
+      paper: "#ffffff",
     },
     text: {
-      primary: "#111827", // near-black
-      secondary: "#4b5563", // medium gray
+      primary: "#0f172a", // richer black
+      secondary: "#475569", // warmer gray
     },
-    divider: "#e5e7eb", // subtle gray divider
+    divider: "#e2e8f0",
+    success: {
+      main: "#10b981",
+    },
+    error: {
+      main: "#ef4444",
+    },
+    warning: {
+      main: "#f59e0b",
+    },
   },
   shape: {
     borderRadius: 12,
   },
   typography: {
     fontFamily: `"Inter", "Roboto", "Helvetica", "Arial", sans-serif`,
-    h5: { fontWeight: 700 },
-    button: { textTransform: "none", fontWeight: 600 },
+    h1: { fontWeight: 800, letterSpacing: "-0.02em" },
+    h2: { fontWeight: 700, letterSpacing: "-0.01em" },
+    h3: { fontWeight: 700 },
+    h4: { fontWeight: 600 },
+    h5: { fontWeight: 600 },
+    h6: { fontWeight: 600 },
+    button: { textTransform: "none", fontWeight: 600, letterSpacing: "0.01em" },
   },
-  shadows: Array(25).fill("none"), // optional: flat design aesthetic
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 10,
+          padding: "10px 24px",
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        },
+      },
+    },
+  },
 });
-
 
 export const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#3b82f6",   // bright azure
+      main: "#3b82f6",
       light: "#60a5fa",
       dark: "#1d4ed8",
-      contrastText: "#f9fafb",
+      contrastText: "#ffffff",
     },
     secondary: {
-      main: "#ec4899",   // neon pink accent
+      main: "#ec4899",
       light: "#f472b6",
       dark: "#be185d",
-      contrastText: "#f9fafb",
+      contrastText: "#ffffff",
     },
     tertiary: {
-      main: "#a855f7",   // vibrant purple for hero accents
+      main: "#a855f7",
       light: "#c084fc",
       dark: "#9333ea",
-      contrastText: "#f9fafb",
+      contrastText: "#ffffff",
     },
     background: {
-      default: "#0d1117", // GitHub-like dark base
-      paper: "#161b22",   // slightly lighter panels
+      default: "#0a0e14", // deeper, richer black
+      paper: "#1a1f2e",   // warmer dark panels
     },
     text: {
-      primary: "#e5e7eb",  // off-white
-      secondary: "#9ca3af", // cool gray
+      primary: "#f1f5f9",  // brighter white
+      secondary: "#94a3b8", // softer gray
     },
-    divider: "#2d333b",
+    divider: "#293548",
+    success: {
+      main: "#10b981",
+    },
+    error: {
+      main: "#f87171",
+    },
+    warning: {
+      main: "#fbbf24",
+    },
   },
   shape: {
     borderRadius: 12,
   },
   typography: {
     fontFamily: `"Inter", "Roboto", "Helvetica", "Arial", sans-serif`,
-    h5: { fontWeight: 700 },
-    button: { textTransform: "none", fontWeight: 600 },
+    h1: { fontWeight: 800, letterSpacing: "-0.02em" },
+    h2: { fontWeight: 700, letterSpacing: "-0.01em" },
+    h3: { fontWeight: 700 },
+    h4: { fontWeight: 600 },
+    h5: { fontWeight: 600 },
+    h6: { fontWeight: 600 },
+    button: { textTransform: "none", fontWeight: 600, letterSpacing: "0.01em" },
   },
-  shadows: Array(25).fill("none"),
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 10,
+          padding: "10px 24px",
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3)",
+          backgroundImage: "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
+        },
+      },
+    },
+  },
 });
