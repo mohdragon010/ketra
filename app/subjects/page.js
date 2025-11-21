@@ -10,15 +10,18 @@ Card,
 CardContent,
 Button,
 LinearProgress,
+IconButton,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useSubjects } from "../contexts/subjectContexts.js";
 import Link from "next/link.js";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 export default function SubjectPage() {
 const theme = useTheme();
 const { subjects } = useSubjects();
-const [activeTab, setActiveTab] = useState("All");
 const [searchQuery, setSearchQuery] = useState("");
 const [filteredSubjects, setFilteredSubjects] = useState([]);
 useEffect(() => {
@@ -68,13 +71,13 @@ return (
 
         {/* subjects grid */}
             <Grid container spacing={3} alignItems="stretch" sx={{display:"flex",justifyContent:"center"}}>
-            {filteredSubjects.map((subject, index) => {
+            {filteredSubjects.length > 0 ? (filteredSubjects.map((subject, index) => {
                 const completedTasks = subject.tasks.filter(task => task.isDone).length;
                 const totalTasks = subject.tasks.length;
                 const progress = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
 
                 return (
-                <Grid item xs={12} sm={6} md={4} key={index} sx={{ display: 'flex' }}>
+                <Grid item xs={12} sm={6} md={4} key={subject.id} sx={{ display: 'flex' }}>
                     <Card
                     component={motion.div}
                     initial={{ opacity: 0, y: 20 }}
@@ -237,38 +240,56 @@ return (
                     </CardContent>
 
                     {/* Action Button */}
-                    <CardContent sx={{ pt: 0 }}>
-                        <Button
-                        fullWidth
-                        component={Link}
-                        href={`/subject/${index}`}
-                        variant="contained"
-                        sx={{
-                            background: `linear-gradient(135deg, ${subject.color}, ${subject.color}dd)`,
-                            color: '#fff',
-                            fontWeight: 600,
-                            textTransform: 'none',
-                            py: 1.2,
-                            borderRadius: '8px',
-                            boxShadow: `0 4px 15px ${subject.color}30`,
-                            transition: 'all 0.3s ease',
-                            '&:hover': {
-                            boxShadow: `0 8px 25px ${subject.color}40`,
-                            transform: 'translateY(-2px)',
-                            background: `linear-gradient(135deg, ${subject.color}dd, ${subject.color})`,
-                            },
-                            '&:active': {
-                            transform: 'translateY(0)',
-                            },
-                        }}
-                        >
-                            View
-                        </Button>
+                    <CardContent sx={{ pt: 0, mt: 'auto' }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+                            <IconButton component={Link} href={`/subject/${subject.id}`} sx={{
+                                color: 'text.secondary',
+                                '&:hover': {
+                                    color: 'primary.main',
+                                    backgroundColor: 'action.hover'
+                                }
+                            }}>
+                                <RemoveRedEyeIcon />
+                            </IconButton>
+                            <IconButton sx={{
+                                color: 'text.secondary',
+                                '&:hover': {
+                                    color: 'warning.main',
+                                    backgroundColor: 'action.hover'
+                                }
+                            }}>
+                                <EditIcon />
+                            </IconButton>
+                            <IconButton sx={{
+                                color: 'text.secondary',
+                                '&:hover': {
+                                    color: 'error.main',
+                                    backgroundColor: 'action.hover'
+                                }
+                            }}>
+                                <DeleteIcon />
+                            </IconButton>
+                        </Box>
                     </CardContent>
                     </Card>
                 </Grid>
                 );
-            })}
+            })) : (
+                <Box sx={{ mt: 8, textAlign: 'center', width: '100%' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <Typography variant="h5" color="text.secondary" gutterBottom>
+                            No Subjects Found
+                        </Typography>
+                        <Typography variant="body1" color="text.secondary">
+                            {searchQuery ? `No subjects match your search for "${searchQuery}".` : "There are no subjects to display yet."}
+                        </Typography>
+                    </motion.div>
+                </Box>
+            )}
             </Grid>
         </Container>
 );

@@ -8,14 +8,11 @@ const ColorModeContext = createContext({ toggleColorMode: () => {} });
 export const useColorMode = () => useContext(ColorModeContext);
 
 export default function ThemeProvider({ children }){
-    const [mode, setMode] = useState("dark")
-
-    useEffect(() => {
+    const [mode, setMode] = useState(() => {
+        if (typeof window === 'undefined') return 'dark';
         const savedMode = localStorage.getItem('themeMode');
-        if(savedMode === "light" || savedMode === "dark"){
-            setMode(savedMode);
-        }
-    },[]);
+        return savedMode === "light" || savedMode === "dark" ? savedMode : "dark";
+    });
 
     useEffect(() => {
         localStorage.setItem('themeMode', mode);

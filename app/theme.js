@@ -145,3 +145,20 @@ export const darkTheme = createTheme({
     },
   },
 });
+export const SUBJECT_COLORS = [
+  "#4A90E2",
+  "#50E3C2",
+  "#F5A623",
+  "#D0021B",
+  "#7ED321",
+  "#9013FE",
+  "#BD10E0",
+  "#F8E71C",
+  "#417505",
+  "#4A4A4A",
+  "#00A8E8",
+  "#FF6F61",
+  "#1F8A70",
+  "#B8E986",
+  "#F7B32B"
+];
