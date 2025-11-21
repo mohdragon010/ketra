@@ -605,7 +605,7 @@ return (
                     {/* Action Button */}
                     <CardContent sx={{ pt: 0, mt: 'auto' }}>
                         <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
-                            <IconButton component={Link} href={`/subject/${subject.id}`} sx={{
+                            <IconButton component={Link} href={`/subjects/${subject.id}`} sx={{
                                 color: 'text.secondary',
                                 '&:hover': {
                                     color: 'primary.main',

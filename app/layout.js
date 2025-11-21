@@ -4,6 +4,7 @@ import ThemeProvider from "./ThemeProvider";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 import { SubjectsProvider } from "./contexts/subjectContexts";
+import { NotesProvider } from "./contexts/notesContext";
 
 
 const geistSans = Geist({
@@ -72,10 +73,12 @@ export default function RootLayout({ children }) {
     >
       <body className="antialiased">
         <SubjectsProvider>
-          <ThemeProvider>
-            <Navbar />
-            {children}
-          </ThemeProvider>
+          <NotesProvider>
+            <ThemeProvider>
+              <Navbar />
+              {children}
+            </ThemeProvider>
+          </NotesProvider>
         </SubjectsProvider>
         <Analytics />
       </body>
