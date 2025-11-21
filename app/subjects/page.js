@@ -11,6 +11,7 @@ CardContent,
 Button,
 LinearProgress,
 IconButton,
+Modal,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -19,11 +20,98 @@ import Link from "next/link.js";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import SchoolIcon from '@mui/icons-material/School';
+import BookIcon from '@mui/icons-material/Book';
+import ScienceIcon from '@mui/icons-material/Science';
+import ComputerIcon from '@mui/icons-material/Computer';
+import CalculateIcon from '@mui/icons-material/Calculate';
+import PublicIcon from '@mui/icons-material/Public';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import BrushIcon from '@mui/icons-material/Brush';
+import { SUBJECT_COLORS } from "../theme.js";
+import { v4 } from "uuid";
 export default function SubjectPage() {
 const theme = useTheme();
-const { subjects } = useSubjects();
+const { subjects, setSubjects } = useSubjects();
 const [searchQuery, setSearchQuery] = useState("");
 const [filteredSubjects, setFilteredSubjects] = useState([]);
+
+const availableIcons = [
+    { name: 'School', component: <SchoolIcon /> },
+    { name: 'Book', component: <BookIcon /> },
+    { name: 'Science', component: <ScienceIcon /> },
+    { name: 'Computer', component: <ComputerIcon /> },
+    { name: 'Calculate', component: <CalculateIcon /> },
+    { name: 'Public', component: <PublicIcon /> },
+    { name: 'MusicNote', component: <MusicNoteIcon /> },
+    { name: 'Brush', component: <BrushIcon /> },
+];
+
+
+const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+const [subjectToDelete, setSubjectToDelete] = useState(null);
+const closeDeleteDialog = () => {setDeleteDialogOpen(false); setSubjectToDelete(null);}
+const openDeleteDialog = (subjectId) => {setDeleteDialogOpen(true); setSubjectToDelete(subjectId)}
+
+const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
+const [subjectToUpdate, setSubjectToUpdate] = useState(null);
+const closeUpdateDialog = () => {setUpdateDialogOpen(false); setSubjectToUpdate(null);}
+const openUpdateDialog = (subjectId) => {
+    const subject = subjects.find(s => s.id === subjectId);
+    if (subject) {
+        setSubjectToUpdate(subjectId);
+        setUpdateSubjectFields({
+            title: subject.title,
+            color: subject.color,
+            icon: subject.icon,
+        });
+        setUpdateDialogOpen(true);
+    }
+}
+const [updateSubjectFields, setUpdateSubjectFields] = useState({
+    title: "",
+    color: "",
+    icon: "",
+});
+
+
+
+const [createDialogOpen, setCreateDialogOpen] = useState(false);
+const closeCreateDialog = () => {setCreateDialogOpen(false);}
+const [createSubjectFields, setCreateSubjectFields] = useState({
+    title: "",
+    color: SUBJECT_COLORS[0],
+    icon: availableIcons[0].name,
+});
+
+
+const handleCreateSubject = () => {
+    const newSubject = {
+        id: v4(),
+        title: createSubjectFields.title,
+        color: createSubjectFields.color,
+        icon: createSubjectFields.icon,
+        tasks: [],
+    }
+    setSubjects([...subjects, newSubject]);
+    closeCreateDialog();
+};
+const handleUpdateSubject = (subjectId) => {
+    setSubjects(subjects.map(subject => 
+        subject.id === subjectId 
+        ? { ...subject, ...updateSubjectFields } 
+        : subject
+    ));
+    setUpdateSubjectFields({ title: "", color: "", icon: "" });
+    closeUpdateDialog();
+};
+
+const handleDeleteSubject = (subjectId) => {
+    setSubjects(subjects.filter(subject => subject.id !== subjectId));
+    closeDeleteDialog();
+};
+
 useEffect(() => {
 
     const filtered = subjects.filter((s) =>
@@ -33,6 +121,244 @@ useEffect(() => {
 }, [searchQuery, subjects]);
 
 return (
+    <>
+    {/* Create modal */}
+        <Modal
+        open={createDialogOpen}
+        onClose={closeCreateDialog}
+        aria-labelledby="create-title"
+        aria-describedby="create-description"
+        >
+        <Box
+            sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 420,
+            p: 3,
+            bgcolor: 'background.paper',
+            borderRadius: 2,
+            boxShadow: 24,
+            }}
+        >
+            <Typography id="create-title" variant="h6" fontWeight={600}>
+            Create Subject
+            </Typography>
+                <Box component="form" sx={{ mt: 2 }}>
+                    <TextField
+                        fullWidth
+                        margin="normal"
+                        label="Title"
+                        name="title"
+                        value={createSubjectFields.title}
+                        onChange={(e) => setCreateSubjectFields({ ...createSubjectFields, title: e.target.value })}
+                    />
+                    <Typography variant="subtitle1" fontWeight={500} sx={{ mt: 2, mb: 1 }}>
+                        Color
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
+                        {SUBJECT_COLORS.map((color) => (
+                            <Box
+                                key={color}
+                                onClick={() => setCreateSubjectFields({ ...createSubjectFields, color: color })}
+                                sx={{
+                                    width: 32,
+                                    height: 32,
+                                    borderRadius: '50%',
+                                    backgroundColor: color,
+                                    cursor: 'pointer',
+                                    border: createSubjectFields.color === color ? `3px solid ${theme.palette.primary.main}` : `3px solid transparent`,
+                                    transition: 'border 0.2s ease',
+                                    '&:hover': {
+                                        transform: 'scale(1.1)'
+                                    }
+                                }}
+                            />
+                        ))}
+                    </Box>
+
+                    <Typography variant="subtitle1" fontWeight={500} sx={{ mt: 2, mb: 1 }}>
+                        Icon
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
+                        {availableIcons.map((icon) => (
+                            <IconButton
+                                key={icon.name}
+                                onClick={() => setCreateSubjectFields({ ...createSubjectFields, icon: icon.name })}
+                                sx={{
+                                    fontSize: '24px',
+                                    border: createSubjectFields.icon === icon.name ? `2px solid ${theme.palette.primary.main}` : `2px solid ${theme.palette.divider}`,
+                                    color: createSubjectFields.icon === icon.name ? theme.palette.primary.main : theme.palette.text.secondary,
+                                    transition: 'all 0.2s ease',
+                                    '&:hover': {
+                                        transform: 'scale(1.1)',
+                                        color: theme.palette.primary.main,
+                                        borderColor: theme.palette.primary.main,
+                                    }
+                                }}
+                            >
+                                {icon.component}
+                            </IconButton>
+                        ))}
+                    </Box>
+
+                </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, mt: 3 }}>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {handleCreateSubject()}}
+            >
+                Create
+            </Button>
+
+            <Button variant="outlined" onClick={closeCreateDialog}>
+                Cancel
+            </Button>
+            </Box>
+        </Box>
+    </Modal>
+    {/* edit modal */}
+    <Modal
+        open={updateDialogOpen}
+        onClose={closeUpdateDialog}
+        aria-labelledby="update-title"
+        aria-describedby="update-description"
+        >
+        <Box
+            sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 420,
+            p: 3,
+            bgcolor: 'background.paper',
+            borderRadius: 2,
+            boxShadow: 24,
+            }}
+        >
+            <Typography id="update-title" variant="h6" fontWeight={600}>
+            Edit Subject
+            </Typography>
+                <Box component="form" sx={{ mt: 2 }}>
+                    <TextField
+                        fullWidth
+                        margin="normal"
+                        label="Title"
+                        name="title"
+                        value={updateSubjectFields.title}
+                        onChange={(e) => setUpdateSubjectFields({ ...updateSubjectFields, title: e.target.value })}
+                    />
+                    <Typography variant="subtitle1" fontWeight={500} sx={{ mt: 2, mb: 1 }}>
+                        Color
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
+                        {SUBJECT_COLORS.map((color) => (
+                            <Box
+                                key={color}
+                                onClick={() => setUpdateSubjectFields({ ...updateSubjectFields, color })}
+                                sx={{
+                                    width: 32,
+                                    height: 32,
+                                    borderRadius: '50%',
+                                    backgroundColor: color,
+                                    cursor: 'pointer',
+                                    border: updateSubjectFields.color === color ? `3px solid ${theme.palette.primary.main}` : `3px solid transparent`,
+                                    transition: 'border 0.2s ease',
+                                    '&:hover': {
+                                        transform: 'scale(1.1)'
+                                    }
+                                }}
+                            />
+                        ))}
+                    </Box>
+
+                    <Typography variant="subtitle1" fontWeight={500} sx={{ mt: 2, mb: 1 }}>
+                        Icon
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
+                        {availableIcons.map((icon) => (
+                            <IconButton
+                                key={icon.name}
+                                onClick={() => setUpdateSubjectFields({ ...updateSubjectFields, icon: icon.name })}
+                                sx={{
+                                    fontSize: '24px',
+                                    border: updateSubjectFields.icon === icon.name ? `2px solid ${theme.palette.primary.main}` : `2px solid ${theme.palette.divider}`,
+                                    color: updateSubjectFields.icon === icon.name ? theme.palette.primary.main : theme.palette.text.secondary,
+                                    transition: 'all 0.2s ease',
+                                    '&:hover': {
+                                        transform: 'scale(1.1)',
+                                        color: theme.palette.primary.main,
+                                        borderColor: theme.palette.primary.main,
+                                    }
+                                }}
+                            >
+                                {icon.component}
+                            </IconButton>
+                        ))}
+                    </Box>
+
+                </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, mt: 3 }}>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {handleUpdateSubject(subjectToUpdate)}}
+            >
+                Edit
+            </Button>
+
+            <Button variant="outlined" onClick={closeUpdateDialog}>
+                Cancel
+            </Button>
+            </Box>
+        </Box>
+    </Modal>
+    {/* delete modal */}
+    <Modal
+        open={deleteDialogOpen}
+        onClose={closeDeleteDialog}
+        aria-labelledby="delete-title"
+        aria-describedby="delete-description"
+        >
+        <Box
+            sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 420,
+            p: 3,
+            bgcolor: 'background.paper',
+            borderRadius: 2,
+            boxShadow: 24,
+            }}
+        >
+            <Typography id="delete-title" variant="h6" fontWeight={600}>
+            Delete Subject?
+            </Typography>
+
+            <Typography id="delete-description" sx={{ mt: 1.5 }} color="text.secondary">
+                Are you sure you want to delete this subject? This action cannot be undone.
+            </Typography>
+
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, mt: 3 }}>
+            <Button
+                variant="contained"
+                color="error"
+                onClick={() => handleDeleteSubject(subjectToDelete)}
+            >
+                Delete
+            </Button>
+
+            <Button variant="outlined" onClick={closeDeleteDialog}>
+                Cancel
+            </Button>
+            </Box>
+        </Box>
+    </Modal>
         <Container maxWidth={false} sx={{ 
                 py: 6,
                 background: `${theme.palette.mode === "dark" ? `linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)` : "linear-gradient(135deg, #f8f9ff 0%, #ede7f6 100%)"}`,
@@ -60,13 +386,50 @@ return (
 
         {/* search input */}
         <Box sx={{ display: "flex", justifyContent: "center", mb: 4 }}>
+            <Box sx={{
+                display: 'flex',
+                alignItems: 'center',
+                width: '100%',
+                maxWidth: 550,
+                backgroundColor: 'background.paper',
+                borderRadius: 2,
+                boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+                border: `1px solid ${theme.palette.divider}`,
+                transition: 'box-shadow 0.2s ease, border-color 0.2s ease',
+                '&:hover': {
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                    borderColor: theme.palette.primary.main,
+                }
+            }}>
             <TextField
-            variant="outlined"
-            placeholder="Search subjects..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            sx={{ width: "100%", maxWidth: 400 }}
+                fullWidth
+                variant="outlined"
+                placeholder="Search subjects..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                sx={{
+                    '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                            border: 'none',
+                        },
+                    },
+                }}
             />
+            <Button
+                variant="contained"
+                startIcon={<AddIcon />}
+                onClick={() => {setCreateDialogOpen(true)}}
+                sx={{
+                    flexShrink: 0,
+                    height: '56px',
+                    borderTopLeftRadius: 0,
+                    borderBottomLeftRadius: 0,
+                    boxShadow: 'none',
+                }}
+            >
+                Create Subject
+            </Button>
+            </Box>
         </Box>
 
         {/* subjects grid */}
@@ -128,8 +491,8 @@ return (
                             justifyContent: 'center',
                             fontSize: '28px'
                             }}
-                        >   
-                            {subject.icon}
+                        >
+                            {availableIcons.find(icon => icon.name === subject.icon)?.component}
                         </Box>
                         <Box
                             sx={{
@@ -251,7 +614,9 @@ return (
                             }}>
                                 <RemoveRedEyeIcon />
                             </IconButton>
-                            <IconButton sx={{
+                            <IconButton
+                                onClick={() => {openUpdateDialog(subject.id)}}
+                                sx={{
                                 color: 'text.secondary',
                                 '&:hover': {
                                     color: 'warning.main',
@@ -260,7 +625,9 @@ return (
                             }}>
                                 <EditIcon />
                             </IconButton>
-                            <IconButton sx={{
+                            <IconButton
+                                onClick={() => {openDeleteDialog(subject.id)}}
+                                sx={{
                                 color: 'text.secondary',
                                 '&:hover': {
                                     color: 'error.main',
@@ -292,5 +659,6 @@ return (
             )}
             </Grid>
         </Container>
+    </>
 );
 }

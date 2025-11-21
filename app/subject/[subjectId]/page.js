@@ -487,7 +487,9 @@
                                                 backgroundColor: 'action.hover'
                                             }
                                         }}
-                                    ><DoneIcon/></IconButton>
+                                    ><DoneIcon
+                                        sx={{color:`${task.isDone ? 'success.main' : 'text.secondary'}`}}
+                                    /></IconButton>
                                     <IconButton
                                         onClick={() => {handleOpenEditDialog(task.id);}}
                                         sx={{
