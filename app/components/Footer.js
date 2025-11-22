@@ -1,5 +1,5 @@
 "use client"
-import { Box, Container, Typography, Link, IconButton, Divider, Grid } from '@mui/material';
+import { Box, Container, Typography, Link, IconButton, Divider, Grid, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import MailIcon from '@mui/icons-material/Mail';
@@ -14,6 +14,7 @@ import InfoIcon from '@mui/icons-material/Info';
 
 
 export default function Footer() {
+  const theme = useTheme()
   const navLinks = [
     { name: 'Home', path: '/', icon: HomeIcon },
     { name: 'Dashboard', path: '/dashboard', icon: DashboardIcon },
@@ -72,11 +73,10 @@ export default function Footer() {
       component="footer"
       sx={{
         mt: 'auto',
-        background: (theme) => 
-          theme.palette.mode === 'dark' 
+        background: theme.palette.mode === 'dark' 
             ? 'linear-gradient(180deg, rgba(18,18,18,0.8) 0%, rgba(18,18,18,1) 100%)'
             : 'linear-gradient(180deg, rgba(250,250,250,0.8) 0%, rgba(255,255,255,1) 100%)',
-        borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+        borderTop:`1px solid ${theme.palette.divider}`,
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -90,7 +90,7 @@ export default function Footer() {
           width: 300,
           height: 300,
           borderRadius: '50%',
-          background: (theme) => 
+          background: 
             theme.palette.mode === 'dark'
               ? 'radial-gradient(circle, rgba(99,102,241,0.1) 0%, rgba(99,102,241,0) 70%)'
               : 'radial-gradient(circle, rgba(99,102,241,0.05) 0%, rgba(99,102,241,0) 70%)',
@@ -105,7 +105,7 @@ export default function Footer() {
           width: 200,
           height: 200,
           borderRadius: '50%',
-          background: (theme) => 
+          background:
             theme.palette.mode === 'dark'
               ? 'radial-gradient(circle, rgba(168,85,247,0.1) 0%, rgba(168,85,247,0) 70%)'
               : 'radial-gradient(circle, rgba(168,85,247,0.05) 0%, rgba(168,85,247,0) 70%)',
@@ -131,7 +131,7 @@ export default function Footer() {
                   sx={{
                     fontWeight: 700,
                     mb: 1,
-                    background: (theme) =>
+                    background:
                       theme.palette.mode === 'dark'
                         ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
                         : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -242,7 +242,7 @@ export default function Footer() {
                           target="_blank"
                           rel="noopener noreferrer"
                           sx={{
-                            bgcolor: (theme) =>
+                            bgcolor:
                               theme.palette.mode === 'dark'
                                 ? 'rgba(255,255,255,0.05)'
                                 : 'rgba(0,0,0,0.04)',
@@ -289,7 +289,7 @@ export default function Footer() {
               color="text.secondary"
               sx={{ fontWeight: 500 }}
             >
-              © 2025 Ketra. All rights reserved.
+              © 2025 Ketra. All rights reserved. | Made by Mohammed Ayman
             </Typography>
             <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
               <Typography
