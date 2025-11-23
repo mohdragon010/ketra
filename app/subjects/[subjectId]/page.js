@@ -8,11 +8,30 @@
     import EditIcon from '@mui/icons-material/Edit';
     import DeleteIcon from '@mui/icons-material/Delete';
     import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+    import SchoolIcon from '@mui/icons-material/School';
+    import BookIcon from '@mui/icons-material/Book';
+    import ScienceIcon from '@mui/icons-material/Science';
+    import ComputerIcon from '@mui/icons-material/Computer';
+    import CalculateIcon from '@mui/icons-material/Calculate';
+    import PublicIcon from '@mui/icons-material/Public';
+    import MusicNoteIcon from '@mui/icons-material/MusicNote';
+    import BrushIcon from '@mui/icons-material/Brush';
     import { useRouter, useParams } from 'next/navigation';
     import moment from 'moment';
     import { v4 } from 'uuid';
 
     export default function SubjectDetails() {
+    const availableIcons = [
+        { name: 'School', component: <SchoolIcon fontSize={"50px"}/> },
+        { name: 'Book', component: <BookIcon fontSize={"50px"}/> },
+        { name: 'Science', component: <ScienceIcon fontSize={"50px"}/> },
+        { name: 'Computer', component: <ComputerIcon fontSize={"50px"}/> },
+        { name: 'Calculate', component: <CalculateIcon fontSize={"50px"}/> },
+        { name: 'Public', component: <PublicIcon fontSize={"50px"}/> },
+        { name: 'MusicNote', component: <MusicNoteIcon fontSize={"50px"}/> },
+        { name: 'Brush', component: <BrushIcon fontSize={"50px"}/> },
+    ];
+
     const theme = useTheme();
     const [deleteDialogOpen,setDeleteDialogOpen] = useState(false);
     const [taskToDelete, setTaskToDelete] = useState(null);
@@ -181,7 +200,7 @@
                 <ArrowBackIcon />
             </IconButton>
             <Typography variant="h2" component="h1" sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <span>{subject.icon}</span>
+                <span style={{fontSize:"40px"}}>{availableIcons.find(icon => icon.name === subject.icon)?.component}</span>
                 {subject.title}
             </Typography>
         </Box>

@@ -142,8 +142,7 @@
                     mb: 2,
                     background: `linear-gradient(120deg, ${theme.palette.primary.main}, #BA68C8, #42A5F5)`,
                     backgroundClip: 'text',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
+                    textFillColor: 'transparent',
                     fontSize: { xs: '2.2rem', md: '3.5rem' },
                     letterSpacing: '-0.5px',
                 }}
@@ -164,7 +163,7 @@
                 </Typography>
             </Box>
 
-            {/* Features - Horizontal scroll-like layout */}
+            {/* Features */}
             <Box
                 sx={{
                 display: 'grid',
@@ -221,7 +220,7 @@
                         />
                     )}
 
-                    {/* Icon - Minimalist badge style */}
+                    {/* Icon */}
                     <Box
                         component={motion.div}
                         animate={{
