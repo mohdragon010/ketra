@@ -6,6 +6,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { useSubjects } from '../contexts/subjectContexts';
 import { motion } from 'framer-motion';
 import Footer from '../components/Footer';
+import SubjectCardMini '../components/SubjectCardMini';
 
 export default function Dashboard() {
   const { subjects } = useSubjects();
