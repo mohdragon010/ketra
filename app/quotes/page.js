@@ -38,6 +38,7 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import Link from "next/link";
 import { offlineQuotes } from "./offlineQuotes";
+import ScrollToTop from "../components/ScrollToTop";
 
 const CATEGORIES = [
 { id: 'all', label: '✨ All', color: '#8b5cf6' },
@@ -528,6 +529,7 @@ return (
         {snackbar.message}
         </Alert>
     </Snackbar>
+    <ScrollToTop />
     </Container>
 );
 }

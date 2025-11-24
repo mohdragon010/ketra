@@ -60,6 +60,14 @@ export const lightTheme = createTheme({
         root: {
           borderRadius: 10,
           padding: "10px 24px",
+          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          '&:hover': {
+            transform: 'translateY(-2px)',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+          },
+          '&:active': {
+            transform: 'translateY(0)',
+          },
         },
       },
     },
@@ -67,6 +75,16 @@ export const lightTheme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-root': {
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          },
         },
       },
     },
@@ -132,6 +150,14 @@ export const darkTheme = createTheme({
         root: {
           borderRadius: 10,
           padding: "10px 24px",
+          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          '&:hover': {
+            transform: 'translateY(-2px)',
+            boxShadow: '0 8px 16px rgba(0, 0, 0, 0.4)',
+          },
+          '&:active': {
+            transform: 'translateY(0)',
+          },
         },
       },
     },
@@ -140,6 +166,16 @@ export const darkTheme = createTheme({
         root: {
           boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3)",
           backgroundImage: "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
+          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-root': {
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          },
         },
       },
     },

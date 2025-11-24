@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Homepage -->
   <url>
     <loc>https://ketra.vercel.app/</loc>
-    <priority>1.00</priority>
+    <lastmod>2024-11-24</lastmod>
     <changefreq>weekly</changefreq>
-    <lastmod>2025-11-12</lastmod>
+    <priority>1.00</priority>
   </url>
+
+  <!-- Dashboard -->
+  <url>
+    <loc>https://ketra.vercel.app/dashboard</loc>
+    <lastmod>2024-11-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Subjects -->
+  <url>
+    <loc>https://ketra.vercel.app/subjects</loc>
+    <lastmod>2024-11-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Notes -->
+  <url>
+    <loc>https://ketra.vercel.app/notes</loc>
+    <lastmod>2024-11-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Quotes -->
+  <url>
+    <loc>https://ketra.vercel.app/quotes</loc>
+    <lastmod>2024-11-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Quotes Favorites -->
+  <url>
+    <loc>https://ketra.vercel.app/quotes/favorites</loc>
+    <lastmod>2024-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- About -->
+  <url>
+    <loc>https://ketra.vercel.app/about</loc>
+    <lastmod>2024-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
 </urlset>

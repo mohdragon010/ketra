@@ -31,6 +31,7 @@ import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import BrushIcon from '@mui/icons-material/Brush';
 import { SUBJECT_COLORS } from "../theme.js";
 import { v4 } from "uuid";
+import ScrollToTop from "../components/ScrollToTop";
 export default function SubjectPage() {
 const theme = useTheme();
 const { subjects, setSubjects } = useSubjects();
@@ -659,6 +660,7 @@ return (
             )}
             </Grid>
         </Container>
+        <ScrollToTop />
     </>
 );
 }

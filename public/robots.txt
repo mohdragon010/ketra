@@ -1,4 +1,16 @@
+# Ketra - Smart Study Dashboard
+# https://ketra.vercel.app
+
+# Allow all crawlers
 User-agent: *
 Allow: /
 
+# Disallow dynamic note and subject pages (user-specific content)
+Disallow: /notes/*/
+Disallow: /subjects/*/
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Sitemap location
 Sitemap: https://ketra.vercel.app/sitemap.xml

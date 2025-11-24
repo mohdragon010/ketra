@@ -143,7 +143,7 @@ export default function Footer() {
                     gap: 1,
                   }}
                 >
-                  Ketra 📚
+                  Ketra
                 </Typography>
                 <Typography
                   variant="body2"

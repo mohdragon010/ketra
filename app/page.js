@@ -1,6 +1,8 @@
+"use client"
 import Hero from './components/Hero.jsx';
 import FeaturesShowCase from './components/FeaturesShowcase.jsx';
 import Footer from './components/Footer.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 import { Box } from '@mui/material';
 
 export default function Home(){
@@ -11,6 +13,7 @@ export default function Home(){
         <FeaturesShowCase />
       </Box>
       <Footer />
+      <ScrollToTop />
     </Box>
   )
 };

@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
-    "start": "next start"
+    "start": "next start",
+    "validate": "node scripts/validate-deployment.js",
+    "prebuild": "node scripts/validate-deployment.js"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

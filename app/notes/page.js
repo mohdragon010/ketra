@@ -27,6 +27,7 @@ import {
   Description
 } from '@mui/icons-material'
 import moment from 'moment'
+import ScrollToTop from '../components/ScrollToTop'
 
 const NotesPage = () => {
   const { notes, createNote, deleteNote } = useNotes()
@@ -198,6 +199,7 @@ const NotesPage = () => {
           </Button>
         </DialogActions>
       </Dialog>
+      <ScrollToTop />
     </Container>
   )
 }

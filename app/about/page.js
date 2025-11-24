@@ -28,7 +28,8 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import PaletteIcon from '@mui/icons-material/Palette';
 import CodeIcon from '@mui/icons-material/Code';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import Footer from '../components/Footer.js';
+import Footer from '../components/Footer.jsx';
+import ScrollToTop from '../components/ScrollToTop';
 
 export default function AboutPage() {
   const theme = useTheme();
@@ -756,6 +757,7 @@ export default function AboutPage() {
 
       {/* Footer */}
       <Footer />
+      <ScrollToTop />
     </Box>
   );
 }
